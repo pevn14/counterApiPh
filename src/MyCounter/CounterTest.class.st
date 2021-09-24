@@ -5,6 +5,13 @@ Class {
 }
 
 { #category : #tests }
+CounterTest >> testAllMethods [
+| c |
+c := Counter startingAt: 1.
+self assert: (c decrement ; decrement ; get) equals: -1
+]
+
+{ #category : #tests }
 CounterTest >> testCounterDecrement [
 
 | c |
@@ -33,4 +40,18 @@ CounterTest >> testCounterSetAndGet [
 c := Counter new.
 c set: 7.
 self assert: c get equals: 7
+]
+
+{ #category : #tests }
+CounterTest >> testInitialize [
+| c |
+c := Counter new.
+self assert: c get equals: 0
+]
+
+{ #category : #tests }
+CounterTest >> testStartingAtFive [
+| c |
+c := Counter startingAt: 5.
+self assert: c get equals: 5
 ]

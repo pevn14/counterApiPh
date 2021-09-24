@@ -8,6 +8,13 @@ Class {
 }
 
 { #category : #accessing }
+Counter class >> startingAt: anInteger [
+
+	^ self new set: anInteger 
+	
+]
+
+{ #category : #accessing }
 Counter >> decrement [ 
 	count:= count -1 
 	
@@ -23,6 +30,15 @@ Counter >> get [
 { #category : #accessing }
 Counter >> increment [
 	count:= count +1 
+	
+]
+
+{ #category : #accessing }
+Counter >> initialize [
+	
+	  super initialize.
+	  count := 0
+	 
 	
 ]
 
