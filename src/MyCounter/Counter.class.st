@@ -43,6 +43,16 @@ Counter >> initialize [
 ]
 
 { #category : #accessing }
+Counter >> printOn: aStream [
+	
+	super printOn: aStream.
+	aStream nextPutAll: ' with value:  ' , count printString.
+	aStream cr 
+	 
+	
+]
+
+{ #category : #accessing }
 Counter >> set: anInteger [ 
 
 	  count := anInteger 
