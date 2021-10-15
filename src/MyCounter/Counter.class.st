@@ -4,26 +4,33 @@ Class {
 	#instVars : [
 		'count'
 	],
-	#category : #MyCounter
+	#category : #'MyCounter-Core'
 }
 
 { #category : #accessing }
 Counter class >> startingAt: anInteger [
 
-	^ self new set: anInteger 
+	^ self new count: anInteger 
+	
+]
+
+{ #category : #accessing }
+Counter >> count [
+
+	  ^ count 
+	
+]
+
+{ #category : #accessing }
+Counter >> count: anInteger [ 
+
+	  count := anInteger 
 	
 ]
 
 { #category : #accessing }
 Counter >> decrement [ 
 	count:= count -1 
-	
-]
-
-{ #category : #accessing }
-Counter >> get [
-
-	  ^ count 
 	
 ]
 
@@ -49,12 +56,5 @@ Counter >> printOn: aStream [
 	aStream nextPutAll: ' with value:  ' , count printString.
 	aStream cr 
 	 
-	
-]
-
-{ #category : #accessing }
-Counter >> set: anInteger [ 
-
-	  count := anInteger 
 	
 ]
