@@ -8,6 +8,7 @@ Class {
 CountersTest >> testCreate1000Counters [
 | c n |
 c := Counters new.
+
 n := 1000.
 (1 to: n) do:[ :i | |key|
 	key := ('counter', i asString) asSymbol .
@@ -121,6 +122,30 @@ CountersTest >> testInitialize [
 c := Counters new.
 self assert: c counters class equals: Dictionary .
 self assert: c counters size equals: 0.
+]
+
+{ #category : #tests }
+CountersTest >> testMultiCountersCreateAndGetValue [
+| c1 c2 c3 |
+c1 := Counters new.
+c2 := Counters new.
+c3 := Counters new.
+c1 createCounter: #counter1 with:10.
+c1 createCounter: #counter2 with:100.
+c1 createCounter: #counter3 with:1000.
+c2 createCounter: #counter1 with:20.
+c2 createCounter: #counter2 with:200.
+self assert: c1 counters class equals: Dictionary .
+self assert: c1 counters size equals: 3.
+self assert: c2 counters class equals: Dictionary .
+self assert: c2 counters size equals: 2.
+self assert: c3 counters class equals: Dictionary .
+self assert: c3 counters size equals: 0.
+
+self assert: (c1 getCounter: #counter1) equals:10.
+self assert: (c2 getCounter: #counter1) equals:20.
+self assert: (c3 getCounter: #counter1) equals:nil.
+
 ]
 
 { #category : #tests }
