@@ -14,7 +14,7 @@ Counters >> counters [
 
 { #category : #action }
 Counters >> createCounter: aString with: anInteger [ 
-	counters at: aString put: (Counter startingAt: anInteger).
+	counters at: aString asString put: (Counter startingAt: anInteger).
 ]
 
 { #category : #action }
@@ -30,6 +30,11 @@ Counters >> existCounter: aString [
 { #category : #accessing }
 Counters >> getCounter: aString [ 
 	^ counters at: aString ifPresent: [ :x|x count ].
+]
+
+{ #category : #accessing }
+Counters >> getJsonCounters [
+	^ counters collect:  [ :item | item count ]
 ]
 
 { #category : #accessing }
