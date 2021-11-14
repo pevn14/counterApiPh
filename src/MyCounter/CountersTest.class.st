@@ -126,9 +126,9 @@ c decrement: #counter1 ; decrement: #counter1 .
 self assert: (c getCounter: #counter1) equals:9.
 
 c increment: #counter2 .
-self assert: (c getCounter: #counter2) equals:nil.
+self assert: (c getCounter: #counter2) equals: nil.
 c decrement: #counter2 .
-self assert: (c getCounter: #counter2) equals:nil.
+self assert: (c getCounter: #counter2) equals: nil.
 
 ]
 
@@ -160,7 +160,7 @@ self assert: c3 counters size equals: 0.
 
 self assert: (c1 getCounter: #counter1) equals:10.
 self assert: (c2 getCounter: #counter1) equals:20.
-self assert: (c3 getCounter: #counter1) equals:nil.
+
 
 ]
 
@@ -212,6 +212,23 @@ self assert: c counters size equals: 3.
 c removeCounter:#counter1.
 self assert: c counters class equals: Dictionary .
 self assert: c counters size equals: 2.
+
+
+]
+
+{ #category : #tests }
+CountersTest >> testRemoveInexistingCounter [
+| c |
+c := Counters new.
+c createCounter: #counter1 with:10.
+c createCounter: 'counter2' with:100.
+c createCounter: 3 with:1000.
+self assert: c counters class equals: Dictionary .
+self assert: c counters size equals: 3.
+
+c removeCounter:#counter12.
+self assert: c counters class equals: Dictionary .
+self assert: c counters size equals: 3.
 
 
 ]

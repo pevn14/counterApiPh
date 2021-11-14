@@ -16,15 +16,13 @@ Counter class >> startingAt: anInteger [
 
 { #category : #accessing }
 Counter >> count [
-
-	  ^ count 
+  ^ count 
 	
 ]
 
 { #category : #accessing }
 Counter >> count: anInteger [ 
-
-	  count := anInteger 
+	  count := anInteger asInteger 
 	
 ]
 
@@ -36,7 +34,7 @@ Counter >> decrement [
 
 { #category : #accessing }
 Counter >> increment [
-	count:= count +1 
+	 count:= count +1
 	
 ]
 

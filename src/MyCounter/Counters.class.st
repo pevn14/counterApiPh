@@ -14,12 +14,12 @@ Counters >> counters [
 
 { #category : #action }
 Counters >> createCounter: aString with: anInteger [ 
-	counters at: aString asString put: (Counter startingAt: anInteger).
+	^counters at: aString asString put: (Counter startingAt: anInteger).
 ]
 
 { #category : #action }
 Counters >> decrement: aString [ 
-	counters at: aString ifPresent: [ :x|x decrement ]
+	^(counters at: aString ifAbsent:[ ^ nil ]) decrement
 ]
 
 { #category : #testing }
@@ -29,7 +29,7 @@ Counters >> existCounter: aString [
 
 { #category : #accessing }
 Counters >> getCounter: aString [ 
-	^ counters at: aString ifPresent: [ :x|x count ].
+	^ (counters at: aString ifAbsent:[ ^ nil ]) count
 ]
 
 { #category : #accessing }
@@ -44,7 +44,7 @@ Counters >> getKeys [
 
 { #category : #action }
 Counters >> increment: aString [ 
-	counters at: aString ifPresent: [ :x|x increment ]
+	^(counters at: aString ifAbsent:[ ^ nil ]) increment 
 ]
 
 { #category : #initialization }
@@ -60,7 +60,7 @@ Counters >> removeAllCounters [
 
 { #category : #reseting }
 Counters >> removeCounter: aString [ 
-	counters removeKey: aString
+	counters removeKey: aString ifAbsent:[]
 ]
 
 { #category : #reseting }
@@ -70,5 +70,5 @@ Counters >> resetAllCounters [
 
 { #category : #reseting }
 Counters >> resetCounter: aString [ 
-	(counters at: aString) count:0
+	(counters at: aString ifAbsent:[ ^ nil ]) count:0
 ]
